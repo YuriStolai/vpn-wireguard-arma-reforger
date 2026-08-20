@@ -98,3 +98,12 @@ provide an explicit rollback method when they make temporary changes.
 The current specification, including requirements, acceptance criteria,
 constraints, and pending decisions, is in
 [`specs/specs.md`](specs/specs.md).
+
+The selected technical approach and delivery sequence are in
+[`specs/plan.md`](specs/plan.md). The implementation backlog is indexed in
+[`specs/tasks/README.md`](specs/tasks/README.md), while the operational
+procedures and troubleshooting guide will live in
+[`docs/README.md`](docs/README.md).
+
+For contributors, follow [`AGENTS.md`](AGENTS.md). No installation command is
+available yet because the project remains in planning.
