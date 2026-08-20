@@ -1,0 +1,3 @@
+[agents.committer]
+description = "Cria commits pequenos e coesos seguindo Conventional Commits. Use ao preparar e registrar alterações no Git."
+config_file = "agents/committer.toml"
