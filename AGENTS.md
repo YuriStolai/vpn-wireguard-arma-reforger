@@ -1,5 +1,11 @@
 # Repository Guidelines
 
+## Project Language
+
+Use English as the default language for all project writing, including
+documentation, code comments, configuration descriptions, commit messages, and
+pull request text.
+
 ## Project Structure & Module Organization
 
 This repository is in its initial planning stage. Keep top-level documentation focused and move detailed designs into `specs/`.
