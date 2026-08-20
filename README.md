@@ -1,101 +1,100 @@
-# VPN WireGuard para Arma Reforger
+# WireGuard VPN for Arma Reforger
 
-Este projeto pretende permitir o acesso público a um servidor de Arma Reforger
-executado em uma rede local, sem configurar redirecionamento de portas no
-roteador. Um VPS com endereço IP público recebe o tráfego dos jogadores e o
-encaminha ao computador hospedeiro por meio de um túnel WireGuard.
+This project aims to provide public access to an Arma Reforger server running
+on a local network without configuring port forwarding on the router. A VPS
+with a public IP address receives player traffic and forwards it to the host
+computer through a WireGuard tunnel.
 
-O projeto está na fase de planejamento. A arquitetura detalhada, as portas e os
-protocolos do jogo, as regras de encaminhamento e os ambientes suportados ainda
-serão definidos antes da implementação.
+The project is in the planning phase. The detailed architecture, game ports
+and protocols, forwarding rules, and supported environments will be defined
+before implementation begins.
 
-## Como funciona
+## How It Works
 
 ```text
-Jogador (PC ou console)
+Player (PC or console)
           |
-          | IP e porta públicos do VPS
+          | Public VPS IP and port
           v
-     VPS público
+      Public VPS
           |
-          | túnel WireGuard
+          | WireGuard tunnel
           v
-Hospedeiro na rede local
+Host on the local network
           |
           v
-Servidor de Arma Reforger
+Arma Reforger server
 ```
 
-O hospedeiro inicia uma conexão de saída com o VPS e mantém o túnel ativo. Os
-jogadores acessam somente o endpoint público do VPS e não precisam instalar o
-WireGuard, importar chaves ou alterar a configuração de rede de seus
-dispositivos. O tráfego de resposta retorna aos jogadores pelo mesmo VPS.
+The host initiates an outbound connection to the VPS and keeps the tunnel
+active. Players access only the VPS public endpoint and do not need to install
+WireGuard, import keys, or change their devices' network configuration. Reply
+traffic returns to the players through the same VPS.
 
-## Objetivos
+## Goals
 
-- evitar alterações no roteador da rede local;
-- oferecer aos jogadores um endpoint público convencional;
-- permitir conexões de PC, PlayStation 5 e Xbox sem uma VPN no cliente;
-- expor somente as portas necessárias ao jogo e à administração da VPN;
-- manter a complexidade da rede restrita ao VPS e ao hospedeiro;
-- fornecer procedimentos reproduzíveis de instalação, validação e diagnóstico.
+- Avoid changes to the local network router.
+- Provide players with a conventional public endpoint.
+- Allow PC, PlayStation 5, and Xbox connections without a client-side VPN.
+- Expose only the ports required by the game and VPN administration.
+- Keep network complexity limited to the VPS and the host.
+- Provide reproducible installation, validation, and diagnostic procedures.
 
-## Escopo
+## Scope
 
-O projeto incluirá a arquitetura de rede, a configuração do túnel WireGuard, o
-encaminhamento do tráfego entre o VPS e o hospedeiro, controles mínimos de
-segurança, exemplos sem dados sensíveis e verificações de conectividade.
+The project will include the network architecture, WireGuard tunnel
+configuration, traffic forwarding between the VPS and the host, minimum
+security controls, examples without sensitive data, and connectivity checks.
 
-Não fazem parte do escopo:
+The following are out of scope:
 
-- instalar ou administrar o servidor de Arma Reforger além de sua
-  conectividade;
-- configurar port forwarding no roteador local;
-- instalar WireGuard nos dispositivos dos jogadores;
-- administrar contas, permissões ou banimentos dentro do jogo;
-- garantir a disponibilidade de serviços ou infraestrutura de terceiros.
+- Installing or administering the Arma Reforger server beyond its
+  connectivity.
+- Configuring port forwarding on the local router.
+- Installing WireGuard on player devices.
+- Administering accounts, permissions, or bans within the game.
+- Guaranteeing the availability of third-party services or infrastructure.
 
-## Pré-requisitos previstos
+## Planned Prerequisites
 
-- um VPS com endereço IP público e permissão para abrir as portas necessárias;
-- um computador hospedeiro capaz de executar o WireGuard e iniciar conexões de
-  saída;
-- um servidor de Arma Reforger executado no hospedeiro;
-- acesso administrativo ao VPS e ao hospedeiro.
+- A VPS with a public IP address and permission to open the required ports.
+- A host computer capable of running WireGuard and initiating outbound
+  connections.
+- An Arma Reforger server running on the host.
+- Administrative access to the VPS and the host.
 
-As distribuições e versões suportadas serão documentadas após a definição da
-arquitetura.
+Supported distributions and versions will be documented after the architecture
+is defined.
 
-## Estado do projeto
+## Project Status
 
-Ainda não há scripts, configurações prontas ou comandos de instalação. Antes do
-início da implementação, precisam ser definidos:
+There are no scripts, ready-to-use configurations, or installation commands
+yet. Before implementation begins, the following must be defined:
 
-- o provedor, a região e o sistema operacional do VPS;
-- o sistema operacional do hospedeiro;
-- o plano de endereçamento da VPN;
-- as portas e os protocolos usados pelo Arma Reforger;
-- as regras de firewall, NAT e roteamento;
-- as metas de latência, perda de pacotes e jogadores simultâneos;
-- o armazenamento seguro das configurações de cada peer.
+- The VPS provider, region, and operating system.
+- The host operating system.
+- The VPN addressing plan.
+- The ports and protocols used by Arma Reforger.
+- The firewall, NAT, and routing rules.
+- The targets for latency, packet loss, and concurrent players.
+- Secure storage for each peer's configuration.
 
-Os próximos entregáveis previstos incluem um diagrama de rede, um modelo de
-ameaças, modelos de configuração com sufixo `.example`, scripts idempotentes,
-um guia de operação e testes de conectividade.
+Planned deliverables include a network diagram, a threat model, configuration
+templates with the `.example` suffix, idempotent scripts, an operations guide,
+and connectivity tests.
 
-## Segurança
+## Security
 
-Nunca versione chaves privadas, endereços públicos reais, endpoints ou
-configurações específicas das máquinas. O VPS e o hospedeiro devem usar pares
-de chaves WireGuard distintos, e as regras de rede devem seguir o princípio do
-menor privilégio.
+Never commit private keys, real public addresses, endpoints, or
+machine-specific configurations. The VPS and host must use distinct WireGuard
+key pairs, and network rules must follow the principle of least privilege.
 
-Revise cuidadosamente qualquer script antes de executá-lo com privilégios
-administrativos. Testes e procedimentos devem evitar alterações permanentes no
-firewall ou na rede e oferecer uma forma explícita de reversão quando fizerem
-mudanças temporárias.
+Carefully review every script before running it with administrative privileges.
+Tests and procedures must avoid permanent firewall or network changes and
+provide an explicit rollback method when they make temporary changes.
 
-## Documentação
+## Documentation
 
-A especificação atual, incluindo requisitos, critérios de aceitação, restrições
-e decisões pendentes, está em [`specs/specs.md`](specs/specs.md).
+The current specification, including requirements, acceptance criteria,
+constraints, and pending decisions, is in
+[`specs/specs.md`](specs/specs.md).

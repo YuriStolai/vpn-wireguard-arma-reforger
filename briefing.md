@@ -1,3 +1,5 @@
-# Briefing do projeto
+# Project Briefing
 
-Este projeto tem como objetivo criar uma VPN com WireGuard para permitir que jogadores de Arma Reforger se conectem ao servidor local executado no meu PC, sem a necessidade de configurar port forwarding no roteador.
+This project aims to create a WireGuard VPN that allows Arma Reforger players
+to connect to a local server running on my PC without requiring port forwarding
+on the router.
